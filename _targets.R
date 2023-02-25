@@ -5,7 +5,7 @@
 
 # Load packages required to define the pipeline:
 library(targets)
-# library(tarchetypes) # Load other packages as needed. # nolint
+library(tarchetypes) # Load other packages as needed. # nolint
 
 # Set target options:
 tar_option_set(
@@ -22,12 +22,14 @@ lapply(list.files("R", full.names = TRUE), source)
 list(
   tar_target(TRY_raw_file, "trait_files/TRY_request-1_public-only.txt", format = "file"),
   tar_target(get_TRY_raw_data, rtry_import(TRY_raw_file)),
-  tar_target(wrangle_raw, wrangle_raw_TRY(TRYdata = get_TRY_raw_data)),
+  
+  tar_file(wrangle_raw_qual, wrangle_raw_TRY_qual(TRYdata = get_TRY_raw_data)),
+  tar_file(wrangle_raw_quant, wrangle_raw_TRY_quant(TRYdata = get_TRY_raw_data)),
+  
+  tar_target(get_qual_data, read.csv(wrangle_raw_qual)),
+  tar_target(get_quant_data, read.csv(wrangle_raw_quant)),
+  
   tar_target(USDA_file, "trait_files/Copy of LTER_Attributes_USDA_Oct2022.xlsx", format = "file"),
   tar_target(get_USDA_data, read_xlsx(USDA_file)),
-  tar_target(TRY_qual_file, "trait_files/Copy of TRYdata_qualitative_wide.csv", format = "file"),
-  tar_target(get_qual_data, read.csv(TRY_qual_file)),
-  tar_target(TRY_quant_file, "trait_files/Copy of TRYdata_quantitative_wide.csv", format = "file"),
-  tar_target(get_quant_data, read.csv(TRY_quant_file)),
   tar_target(integration, integrate_TRY_nonTRY(usda = get_USDA_data, try_qual = get_qual_data, try_quant = get_quant_data))
 )

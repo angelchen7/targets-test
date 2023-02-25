@@ -1,0 +1,15 @@
+name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
+get_qual_data|stem|bc697f74db68e362|02e15574eafffaef|e21fdba221afb2a4|1179945692||t19413.0793909379s|2b580f7bb4403c51|3208|rds|local|vector|||0.001||
+get_quant_data|stem|6bb8ab22b81bdf7c|415f8aa2f8d53879|78dcd9d06433b7af|931427072||t19413.0793908716s|a6bf4c2dfe4bea8f|4390|rds|local|vector|||0.003||
+get_TRY_raw_data|stem|e4c2460568979daa|e72be3aca46bed3a|afe7a3f807c95ed7|873068287||t19413.0527411463s|17cfd7620dee276d|4142977|rds|local|vector|||2.217||
+get_USDA_data|stem|0df23a44bffcb004|ed139548f549eb76|bb824dcb4a7313c1|-736709648||t19413.0527415665s|16a92a6a37544035|14928|rds|local|vector|||0.028||
+integrate_TRY_nonTRY|function|79a08a0b4cf1d0c1|||||||||||||||
+integration|stem|376d9f55ca9c867a|0a61ce4e98aa6c2e|2fc479da7627d461|-1175697766||t19413.0528929949s|809f76b9a30d84a1|1565|rds|local|vector|||6.419||
+TRY_qual_file|stem|474e0011787856a8|2ba1832129d4c834|40dd876b3232798f|-1485344596|trait_files/Copy of TRYdata_qualitative_wide.csv|t19413.0527449719s||11583|file|local|vector|||||_paths_ 31mmissing files trait_filesCopy of TRYdata_qualitative_wide.csv39m
+TRY_quant_file|stem|9bb5c7e63a89fca7|0fd92aad2263f18e|1196b9d2afcace28|-887528192|trait_files/Copy of TRYdata_quantitative_wide.csv|t19413.052788981s|7d2f842b3388825b|8339|file|local|vector|||0||
+TRY_raw_file|stem|489ff68b82ea2ffa|beeda3feff79ef3f|ef46db3751d8e999|-1468595032|trait_files/TRY_request-1_public-only.txt|t19304.9444604488s|dceb02443834685a|386791765|file|local|vector|||0.631||
+USDA_file|stem|bfaab12c41937584|0cebec67444a2a8f|ef46db3751d8e999|-1165266365|trait_files/Copy of LTER_Attributes_USDA_Oct2022.xlsx|t19413.0478907197s|fe96ff73b7f4382a|144752|file|local|vector|||0.001||
+wrangle_raw_qual|stem|474e0011787856a8|2197f35208b100a9|908e006d9a80ff4d|-1493275552|trait_files/Copy of TRYdata_qualitative_wide.csv|t19413.0793642344s|7acdce3ecf6589fd|11583|file|local|vector|||2.503||
+wrangle_raw_quant|stem|9bb5c7e63a89fca7|84f2ed105248a848|00c4feef8db26ad8|1528909175|trait_files/Copy of TRYdata_quantitative_wide.csv|t19413.0809450611s|7d2f842b3388825b|8339|file|local|vector|||2.783||
+wrangle_raw_TRY_qual|function|798ecb74cb012188|||||||||||||||
+wrangle_raw_TRY_quant|function|852497317a045a2b|||||||||||||||
