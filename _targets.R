@@ -9,7 +9,7 @@ library(tarchetypes) # Load other packages as needed. # nolint
 
 # Set target options:
 tar_option_set(
-  packages = c("tidyverse", "googledrive", "readxl", "stringr", "rtry"), # packages that your targets need to run
+  packages = c("tidyverse", "googledrive", "readxl", "stringr", "rtry", "rstatix", "rlang"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
 )
@@ -20,16 +20,34 @@ lapply(list.files("R", full.names = TRUE), source)
 
 # Replace the target list below with your own:
 list(
+  # point to raw TRY file
   tar_target(TRY_raw_file, "trait_files/TRY_request-1_public-only.txt", format = "file"),
+  # read in raw TRY file
   tar_target(get_TRY_raw_data, rtry_import(TRY_raw_file)),
   
-  tar_file(wrangle_raw_qual, wrangle_raw_TRY_qual(TRYdata = get_TRY_raw_data)),
-  tar_file(wrangle_raw_quant, wrangle_raw_TRY_quant(TRYdata = get_TRY_raw_data)),
+  # wrangle qualitative TRY data
+  tar_file(wrangle_TRY_qual, wrangle_raw_TRY_qual(TRYdata = get_TRY_raw_data)),
+  # wrangle quantitative TRY data
+  tar_file(wrangle_TRY_quant, wrangle_raw_TRY_quant(TRYdata = get_TRY_raw_data)),
   
-  tar_target(get_qual_data, read.csv(wrangle_raw_qual)),
-  tar_target(get_quant_data, read.csv(wrangle_raw_quant)),
+  # read in qualitative TRY data
+  tar_target(get_qual_data, read.csv(wrangle_TRY_qual)),
+  # read in quantitative TRY data
+  tar_target(get_quant_data, read.csv(wrangle_TRY_quant)),
   
+  # point to USDA file
   tar_target(USDA_file, "trait_files/Copy of LTER_Attributes_USDA_Oct2022.xlsx", format = "file"),
+  # read in USDA file
   tar_target(get_USDA_data, read_xlsx(USDA_file)),
-  tar_target(integration, integrate_TRY_nonTRY(usda = get_USDA_data, try_qual = get_qual_data, try_quant = get_quant_data))
+  
+  # integrate TRY data with USDA data to create integrated attributes table
+  tar_file(integrate_TRY_USDA, integrate_TRY_nonTRY(usda = get_USDA_data, 
+                                                    try_qual = get_qual_data, 
+                                                    try_quant = get_quant_data)),
+  
+  # read in integrated attributes table
+  tar_target(get_integrated_data, read_csv(integrate_TRY_USDA, 
+                                           col_types = cols(Seed_development_1_2or3yrs = col_character()))),
+  # calculate some stats for the integrated attributes table
+  tar_file(stats, calculate_stats(all_traits = get_integrated_data))
 )
