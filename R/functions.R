@@ -2,7 +2,7 @@
 #                Wrangle raw TRY data
 ## -------------------------------------------------- ##
 
-wrangle_raw_TRY_qual <- function(TRYdata){
+wrangle_TRY_qual_func <- function(TRYdata){
   
   # Main Request - Initial Tweaks -----
   
@@ -124,7 +124,7 @@ wrangle_raw_TRY_qual <- function(TRYdata){
 }
 
 
-wrangle_raw_TRY_quant <- function(TRYdata){
+wrangle_TRY_quant_func <- function(TRYdata){
   # Main Request - Initial Tweaks -----
   
   # Perform initial wrangling
@@ -248,7 +248,7 @@ wrangle_raw_TRY_quant <- function(TRYdata){
 #        Combine Attributes Table & TRY Data
 ## -------------------------------------------------- ##
 
-integrate_TRY_nonTRY <- function(usda, try_qual, try_quant){
+integrate_TRY_USDA_func <- function(usda, try_qual, try_quant){
   
   # Prep for integration ----
 
