@@ -445,7 +445,7 @@ integrate_TRY_USDA_func <- function(usda, try_qual, try_quant){
 #    Calculating & Exporting Stats for Attributes Table
 ## -------------------------------------------------- ##
 
-calculate_stats <- function(all_traits){
+calculate_stats_func <- function(all_traits){
   # making a folder for our exported csvs
   export_folder <- paste0("export_stats_", Sys.Date())
   dir.create(path = file.path(export_folder), showWarnings = FALSE)
@@ -554,5 +554,4 @@ calculate_stats <- function(all_traits){
   write.csv(site_stats_for_qual_atts_df, file.path(export_folder, "site_stats_for_qual_atts.csv"), row.names = FALSE)
   
   # End ----
-  return(export_folder)
 }
