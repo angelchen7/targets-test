@@ -41,3 +41,7 @@ vignettes/*.pdf
 /trait_files/
 
 .DS_Store
+
+*.Rproj
+
+/export_stats_*/
