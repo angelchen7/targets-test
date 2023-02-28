@@ -554,4 +554,5 @@ calculate_stats_func <- function(all_traits){
   write.csv(site_stats_for_qual_atts_df, file.path(export_folder, "site_stats_for_qual_atts.csv"), row.names = FALSE)
   
   # End ----
+  return(export_folder)
 }

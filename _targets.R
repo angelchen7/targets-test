@@ -49,5 +49,5 @@ list(
   tar_target(get_integrated_data, read_csv(integrate_TRY_USDA, 
                                            col_types = cols(Seed_development_1_2or3yrs = col_character()))),
   # calculate some stats for the integrated attributes table
-  tar_target(calculate_stats, calculate_stats_func(all_traits = get_integrated_data))
+  tar_file(calculate_stats, calculate_stats_func(all_traits = get_integrated_data))
 )
