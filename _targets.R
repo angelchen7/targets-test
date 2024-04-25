@@ -12,7 +12,7 @@ tar_option_set(
   packages = c("tidyverse", "googledrive", "readxl", "stringr", "rtry", "rstatix", "rlang"), # packages that your targets need to run
   format = "rds" # default storage format
   # Set other options as needed.
-)
+ )
 
 # Load the R scripts with your custom functions:
 lapply(list.files("R", full.names = TRUE), source)
